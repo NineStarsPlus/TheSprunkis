@@ -1,0 +1,107 @@
+body {
+  background-image: url(../img/etc/grass.png);
+  background-size: 40%;
+}
+
+#sprunkis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.sprunki {
+  width: 120px;
+  height: 120px;
+
+  /* fix rotation render issue */
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.sprunkiSprite {
+  background-position: center;
+  width: 120px;
+  height: 120px;
+
+  /* fix rotation render issue */
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.area {
+  position: absolute;
+  width: calc(100vw - 100px);
+  height: calc(100vh - 100px);
+}
+
+#poloArea {
+  border: 10px solid rgb(100, 190, 64);
+  border-radius: 25px;
+}
+
+.talk {
+  font-size: 13px;
+  position: absolute;
+  margin-left: 90px;
+  margin-bottom: 90px;
+  max-width: 10vw;
+  width: max-content;
+  min-width: 60px;
+  padding: 5px;
+  visibility: hidden;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* css template */
+
+.poloSprite {
+  background-image: url(../img/polo.png);
+  image-rendering: optimizeQuality;
+  background-size: 115px;
+  transition: rotate 0.15s linear; /* walking animation speed */
+}
+
+.poloSpriteFlip {
+  background-image: url(../img/polo.png);
+  image-rendering: optimizeQuality;
+  background-size: 115px;
+  transition: rotate 0.15s linear; /* walking animation speed */
+  transform: scaleX(-1);
+  visibility: hidden;
+  display: none;
+}
+
+/*
+basicColors for talk
+#talk {
+    border-radius: 10px;
+  background-color: #60aaff;
+  border: 4px solid #308aff;
+}
+*/
+
+/* simon */
+
+.simonSprite {
+  background-image: url(../img/simon.png);
+  background-size: 115px;
+  transition: rotate 0.15s linear; /* walking animation speed */
+  transform: scaleX(-1);
+}
+
+.simonSpriteFlip {
+  background-image: url(../img/simon.png);
+  background-size: 115px;
+  transition: rotate 0.15s linear; /* walking animation speed */
+  visibility: hidden;
+  display: none;
+}
+
+#simonTalk {
+    border-radius: 10px;
+  background-color: #fcff5c;
+  border: 4px solid #ffd342;
+}
