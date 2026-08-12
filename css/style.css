@@ -58,14 +58,14 @@ body {
 /* css template */
 
 .poloSprite {
-  background-image: url(../img/polo.png);
+  background-image: url(../img/polo/polo.png);
   image-rendering: optimizeQuality;
   background-size: 115px;
   transition: rotate 0.15s linear; /* walking animation speed */
 }
 
 .poloSpriteFlip {
-  background-image: url(../img/polo.png);
+  background-image: url(../img/polo/polo.png);
   image-rendering: optimizeQuality;
   background-size: 115px;
   transition: rotate 0.15s linear; /* walking animation speed */
@@ -86,14 +86,14 @@ basicColors for talk
 /* simon */
 
 .simonSprite {
-  background-image: url(../img/simon.png);
+  background-image: url(../img/simon/simon.png);
   background-size: 115px;
   transition: rotate 0.15s linear; /* walking animation speed */
   transform: scaleX(-1);
 }
 
 .simonSpriteFlip {
-  background-image: url(../img/simon.png);
+  background-image: url(../img/simon/simon.png);
   background-size: 115px;
   transition: rotate 0.15s linear; /* walking animation speed */
   visibility: hidden;
