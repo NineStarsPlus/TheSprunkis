@@ -254,7 +254,7 @@ const returnRandomTalk = (talkArray) => {
 let poloEnabled = false;
 
 let polo = document.getElementById("polo");
-let poloImage = "url('../img/polo/polo.png')";
+let poloImage = "url('img/polo/polo.png')";
 let poloSprite = document.getElementsByClassName("poloSprite")[0];
 let poloSpriteFlip = document.getElementsByClassName("poloSpriteFlip")[0];
 
@@ -315,7 +315,7 @@ const animatePolo = async () => {
 let simonEnabled = true;
 
 let simon = document.getElementById("simon");
-let simonImage = "url('../img/simon/simon.png')";
+let simonImage = "url('img/simon/simon.png')";
 let simonSprite = document.getElementsByClassName("simonSprite")[0];
 let simonSpriteFlip = document.getElementsByClassName("simonSpriteFlip")[0];
 
@@ -328,12 +328,12 @@ let simonWalkRangeMax = 450;
 
 let simonSitTimeMin = 2;
 let simonSitTimeMax = 5;
-let simonSitImage = "url('../img/simon/simonSit.png')";
+let simonSitImage = "url('img/simon/simonSit.png')";
 
 let simonSprintSpeed = 0.015; // seconds per 10px
 let simonSprintRangeMin = 250;
 let simonSprintRangeMax = 600;
-let simonSprintImage = "url('../img/simon/simonRunning.png')";
+let simonSprintImage = "url('img/simon/simonRunning.png')";
 
 let simonTalkDiv = document.getElementById("simonTalk");
 let simonTalks = ["Hello", "Im simon", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa"];
