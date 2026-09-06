@@ -87,13 +87,14 @@ basicColors for talk
 
 .simonSprite {
   background-image: url(../img/simon/simon.png);
+  image-rendering: optimizeQuality;
   background-size: 115px;
   transition: rotate 0.15s linear; /* walking animation speed */
-  transform: scaleX(-1);
 }
 
 .simonSpriteFlip {
   background-image: url(../img/simon/simon.png);
+  image-rendering: optimizeQuality;
   background-size: 115px;
   transition: rotate 0.15s linear; /* walking animation speed */
   visibility: hidden;
@@ -101,7 +102,7 @@ basicColors for talk
 }
 
 #simonTalk {
-    border-radius: 10px;
-  background-color: #fcff5c;
-  border: 4px solid #ffd342;
+  border-radius: 10px;
+  background-color: #fdff6b;
+  border: 3px solid #ffd000;
 }

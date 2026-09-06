@@ -97,6 +97,36 @@ const move = async (
   sprunki.dataset.action = "none";
 };
 
+const talk = async (sprunki, talkChance, sprite, spriteFlip, imageTalk, image, talkDiv, talks, wordSpeed, waitAfterTalk, waitBetweenTalks ) => {
+   let random = Math.floor(Math.random() * 101);
+
+    if (random <= talkChance && sprunki.dataset.action == "none") {
+      sprunki.dataset.action = "talking";
+      await sleep(1);
+      sprite.style.backgroundImage = imageTalk;
+      spriteFlip.style.backgroundImage = imageTalk;
+      talkDiv.style.visibility = "visible";
+      const fullPhrase = simonTalks[returnRandomTalk(talks)];
+      const letters = fullPhrase.split("");
+      talkDiv.innerHTML = "";
+
+      for (let i = 0; i < letters.length; i++) {
+        talkDiv.innerHTML += letters[i];
+        await sleep(wordSpeed);
+      }
+
+      await sleep(waitAfterTalk);
+
+      talkDiv.style.visibility = "hidden";
+      talkDiv.innerHTML = "";
+      sprite.style.backgroundImage = image;
+      spriteFlip.style.backgroundImage = image;
+      simon.dataset.action = "none";
+    }
+
+    await sleep(waitBetweenTalks);
+}
+
 const sit = async (
   sprunki,
   sprite,
@@ -338,8 +368,9 @@ let simonSprintImage = "url('img/simon/simonRunning.png')";
 let simonTalkDiv = document.getElementById("simonTalk");
 let simonTalks = ["Hello", "Im simon", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa"];
 let simonWordSpeed = 0.005;
-let simonWaitBetweenTalks = 0.5;
+let simonWaitBetweenTalks = 1; // + 0.5 
 let simonWaitAfterTalk = 2;
+let simonTalkImage = "url('img/simon/simonTalk.png')";
 
 // Chances
 // ! ALL chances (except talk chance) must add up to 100%
@@ -347,7 +378,7 @@ let simonWalkChance = 50;
 let simonSprintChance = 40;
 let simonSitChance = 10;
 
-let simonTalkChance = 70;
+let simonTalkChance = 20;
 
 const runSimon = async () => {
   animateSimon();
@@ -398,15 +429,63 @@ const runSimon = async () => {
 };
 
 const animateSimon = async () => {
+  let a = false;
   while (true) {
-    if (simon.dataset.action == "walk" || simon.dataset.action == "sprint") {
+    if (simon.dataset.action == "walk") {
+      simonSprite.style.transition = "rotate 0.15s linear";
+      simonSpriteFlip.style.transition = "rotate 0.15s linear";
+      simonSprite.style.transform = "scaleX(-1)";
+      simonSpriteFlip.style.transform = "";
       simonSprite.style.rotate = "5deg";
       simonSpriteFlip.style.rotate = "-5deg";
       await sleep(0.15);
       simonSprite.style.rotate = "-5deg";
       simonSpriteFlip.style.rotate = "5deg";
       await sleep(0.15);
+    } else if (simon.dataset.action == "sprint") {
+      simonSprite.style.transition = "rotate 0.15s linear";
+      simonSpriteFlip.style.transition = "rotate 0.15s linear";
+      simonSprite.style.transform = "";
+      simonSpriteFlip.style.transform = "scaleX(-1)";
+      simonSprite.style.rotate = "5deg";
+      simonSpriteFlip.style.rotate = "-5deg";
+      await sleep(0.15);
+      simonSprite.style.rotate = "-5deg";
+      simonSpriteFlip.style.rotate = "5deg";
+      await sleep(0.15);
+    } else if (simon.dataset.action == "talking") {
+      if (a == false) {
+        a = true;
+        await sleep(1);
+      }
+      simonSprite.style.transition =
+        "rotate 0.15s linear, transform 0.12s ease-in-out";
+      simonSpriteFlip.style.transition =
+        "rotate 0.15s linear, transform 0.12s ease-in-out";
+      simonSprite.style.rotate = "0deg";
+      simonSpriteFlip.style.rotate = "0deg";
+
+      simonSprite.style.transform = "scale(-1.12, 0.88)";
+      simonSpriteFlip.style.transform = "scale(1.12, 0.88)";
+      await sleep(0.12);
+
+      simonSprite.style.transform = "scale(-0.95, 1.05)";
+      simonSpriteFlip.style.transform = "scale(0.95, 1.05)";
+      await sleep(0.12);
+
+      simonSprite.style.transform = "scale(-1.08, 0.92)";
+      simonSpriteFlip.style.transform = "scale(1.08, 0.92)";
+      await sleep(0.12);
+
+      simonSprite.style.transform = "scale(-0.92, 1.08)";
+      simonSpriteFlip.style.transform = "scale(0.92, 1.08)";
+      await sleep(0.12);
     } else {
+      a = false;
+      simonSprite.style.transition = "rotate 0.15s linear";
+      simonSpriteFlip.style.transition = "rotate 0.15s linear";
+      simonSprite.style.transform = "scaleX(-1)";
+      simonSpriteFlip.style.transform = "";
       simonSprite.style.rotate = "0deg";
       simonSpriteFlip.style.rotate = "0deg";
       await sleep(0.05);
@@ -416,26 +495,21 @@ const animateSimon = async () => {
 
 const talkLoopSimon = async () => {
   while (true) {
-    let random = Math.floor(Math.random() * 101);
-
-    if (random <= simonTalkChance) {
-      simonTalkDiv.style.visibility = "visible";
-      const fullPhrase = simonTalks[returnRandomTalk(simonTalks)];
-      const letters = fullPhrase.split("");
-      simonTalkDiv.innerHTML = "";
-
-      for (let i = 0; i < letters.length; i++) {
-        simonTalkDiv.innerHTML += letters[i];
-        await sleep(simonWordSpeed);
-      }
-
-      await sleep(simonWaitAfterTalk);
-  
-      simonTalkDiv.style.visibility = "hidden";
-      simonTalkDiv.innerHTML = "";
-    }
-
-    await sleep(simonWaitBetweenTalks);
+    // sprunki, talkChance, sprite, spriteFlip, talkImage, image, talkDiv, talks, wordSpeed, waitAfterTalk, waitBetweenTalk
+   talk(
+    simon,
+    simonTalkChance,
+    simonSprite,
+    simonSpriteFlip,
+    simonTalkImage,
+    simonImage,
+    simonTalkDiv,
+    simonTalks,
+    simonWordSpeed,
+    simonWaitAfterTalk,
+    simonWaitBetweenTalks
+   )
+   await sleep (0.5);
   }
 };
 
